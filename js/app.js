@@ -11,6 +11,9 @@ const options = {
     methods : {
         changed(){
             console.log(this.search);
+            this.notes = this.notes.filter((note) => {
+                return note.title.toLowerCase().includes(this.search.toLowerCase());
+            })
         },
         displayFormNote(){
             if (!this.seenAddNote)
@@ -30,8 +33,12 @@ const options = {
             this.notes.unshift(bodyNote);
             this.bodyNote = "";
             this.titleNote = "";
+            localStorage.setItem("notes", JSON.stringify(this.notes));
         }
-    }
+    },
+    mounted() {
+        this.notes = JSON.parse(localStorage.getItem("notes")) || [];
+    },
 }
 
 const app = Vue.createApp(options);
