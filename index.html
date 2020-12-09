@@ -20,7 +20,7 @@
 <body id="app">
     <nav class="navbar navbar-light justify-content-between">
         <a class="navbar-brand">Notes</a>
-        <img @click="addNote" class="create_note" src="img/plus.png">
+        <img @click="displayFormNote" class="create_note" src="img/plus.png">
       </nav>
 
     <div class="container">
@@ -31,17 +31,20 @@
 
           <div v-if="seenAddNote" class="card mt-4 mb-4 div_add_note" style="width: 100%;">
             <div class="card-body">
-                <textarea class="form-control" aria-label="With textarea"></textarea>
-                <a href="#" class="btn btn_add_note mt-2">Ajouter</a>
+                <form @submit.prevent="addNote">
+                  <input type="text" class="form-control" v-model="titleNote" placeholder="Titre" v-focus />
+                  <textarea  v-model="bodyNote" class="form-control mt-4" aria-label="With textarea" placeholder="..."></textarea>
+                  <button type="submit" class="btn btn_add_note mt-2" :disabled="!bodyNote.trim() || !titleNote.trim()">Ajouter</button>
+                </form>
             </div>
         </div>
 
           <div id="accordion">
-            <div class="card">
+            <div class="card"  v-for="note in notes">
               <div class="card-header" id="headingOne">
                 <h5 class="mb-0">
                   <button class="btn btn-link" data-toggle="collapse" data-target="#collapseOne" aria-expanded="true" aria-controls="collapseOne">
-                    Titre note 
+                    {{ note.title }}
                   </button>
                   <a href=""><img class="edit_note" src="img/pencil.png"></a>
                   <a href=""><img  class="delete_note" src="img/delete.png"></a>
@@ -50,35 +53,7 @@
           
               <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
                 <div class="card-body">
-                  Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                </div>
-              </div>
-            </div>
-            <div class="card">
-              <div class="card-header" id="headingTwo">
-                <h5 class="mb-0">
-                  <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseTwo" aria-expanded="false" aria-controls="collapseTwo">
-                    Titre note 
-                  </button>
-                </h5>
-              </div>
-              <div id="collapseTwo" class="collapse" aria-labelledby="headingTwo" data-parent="#accordion">
-                <div class="card-body">
-                  Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
-                </div>
-              </div>
-            </div>
-            <div class="card">
-              <div class="card-header" id="headingThree">
-                <h5 class="mb-0">
-                  <button class="btn btn-link collapsed" data-toggle="collapse" data-target="#collapseThree" aria-expanded="false" aria-controls="collapseThree">
-                    Titre note 
-                  </button>
-                </h5>
-              </div>
-              <div id="collapseThree" class="collapse" aria-labelledby="headingThree" data-parent="#accordion">
-                <div class="card-body">
-                  Anim pariatur cliche reprehenderit, enim eiusmod high life accusamus terry richardson ad squid. 3 wolf moon officia aute, non cupidatat skateboard dolor brunch. Food truck quinoa nesciunt laborum eiusmod. Brunch 3 wolf moon tempor, sunt aliqua put a bird on it squid single-origin coffee nulla assumenda shoreditch et. Nihil anim keffiyeh helvetica, craft beer labore wes anderson cred nesciunt sapiente ea proident. Ad vegan excepteur butcher vice lomo. Leggings occaecat craft beer farm-to-table, raw denim aesthetic synth nesciunt you probably haven't heard of them accusamus labore sustainable VHS.
+                  {{ note.content }}
                 </div>
               </div>
             </div>
