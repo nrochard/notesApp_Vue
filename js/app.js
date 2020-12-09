@@ -36,7 +36,7 @@ const options = {
             this.notes.unshift(bodyNote);
             this.bodyNote = "";
             this.titleNote = "";
-            this.seenAddNote = false;
+            // this.seenAddNote = false;
             localStorage.setItem("notes", JSON.stringify(this.notes));
         },
         deleteNote(id) {
