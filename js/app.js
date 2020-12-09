@@ -10,6 +10,9 @@ const options = {
     },
     methods : {
         changed(){
+            if(!this.search){
+                this.notes = JSON.parse(localStorage.getItem("notes")) || [];
+            }
             console.log(this.search);
             this.notes = this.notes.filter((note) => {
                 return note.title.toLowerCase().includes(this.search.toLowerCase());
@@ -33,8 +36,15 @@ const options = {
             this.notes.unshift(bodyNote);
             this.bodyNote = "";
             this.titleNote = "";
+            this.seenAddNote = false;
             localStorage.setItem("notes", JSON.stringify(this.notes));
-        }
+        },
+        deleteNote(id) {
+            this.notes = this.notes.filter((note) => {
+              return id !== note.id;
+            });
+            localStorage.setItem("notes", JSON.stringify(this.notes));
+          },
     },
     mounted() {
         this.notes = JSON.parse(localStorage.getItem("notes")) || [];
