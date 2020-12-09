@@ -1,0 +1,75 @@
+/* #fca404 */
+/* #f34434 */
+/* #fbe383 */
+/* #455a64 */
+
+nav{
+    background-color: #fbe383 !important;
+}
+
+.navbar-brand{
+    font-size: 25px !important;
+    font-weight: bold !important;
+}
+
+.container {
+    height: calc(100vh - 106px);
+}
+
+footer{
+    background-color: #e9e9e9 !important;
+    text-align: center;
+    z-index: 100;
+}
+
+.create_note{
+    width: 30px;
+}
+
+.delete_note, .edit_note{
+    width: 20px;
+}
+
+.edit_note{
+    margin-left: 10px;
+}
+
+.delete_note{
+    margin-left: 10px;
+}
+
+.div_add_note{
+    transition: opacity 0.5s linear, transform 0.5s linear;
+    animation: fadein 1s;
+}
+
+@keyframes fadein {
+    from {
+        opacity:0;
+    }
+    to {
+        opacity:1;
+    }
+}
+
+.btn_add_note{
+    background-color: #fbe383 !important;
+    color: black !important;
+}
+
+.form-control:focus{
+    border-color: grey !important;
+    box-shadow: none !important;
+}
+
+.btn-link{
+    color: black !important;
+}
+
+.btn.focus, .btn:focus{
+    box-shadow: none !important;
+}
+
+.card-header{
+    border-bottom: none !important;
+}
