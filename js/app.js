@@ -65,13 +65,11 @@ const options = {
             console.log(note);
         },
         updateNote(){
-            console.log(this.idToEdit)
             const noteToEdit = this.notes.find( note => note.id === this.idToEdit);
-            console.log(noteToEdit);
             noteToEdit.title = this.titleNote;
             noteToEdit.content = this.bodyNote;
             localStorage.setItem("notes", JSON.stringify(this.notes));
-            console.log(noteToEdit);
+            this.seenEditNote = false;
         },
     },
     mounted() {
