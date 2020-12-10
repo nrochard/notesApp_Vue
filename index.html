@@ -36,8 +36,12 @@
             <div class="card-body">
                 <form @submit.prevent="addNote">
                   <input type="text" class="form-control" v-model="titleNote" placeholder="Titre" v-focus />
-                  <textarea  v-model="bodyNote" class="form-control mt-4" aria-label="With textarea" placeholder="..."></textarea>
-                  <button type="submit" class="btn btn_add_note mt-4" :disabled="!bodyNote.trim() || !titleNote.trim()">Ajouter</button>
+                  <textarea  @input.prevent="countWord" v-model="bodyNote" class="form-control mt-4" aria-label="With textarea" placeholder="..."></textarea>
+                  <div class="btn_nb">
+                    <button type="submit" class="btn btn_add_note mt-4" :disabled="!bodyNote.trim() || !titleNote.trim()">Ajouter</button>
+                    <p class="mt-4 nb_word">Nombre de mots : {{ nbWord }}</p>
+                  </div>
+
                 </form>
             </div>
         </div>
@@ -50,7 +54,7 @@
                     {{ note.title }}
                   </button>
                   <a href=""><img class="edit_note" src="img/pencil.png"></a>
-                  <a @click="deleteNote(note.id)" href=""><img class="delete_note" src="img/delete.png"></a>
+                  <a @click.prevent="deleteNote(note.id)" href=""><img class="delete_note" src="img/delete.png"></a>
                 </h5>
               </div>
           

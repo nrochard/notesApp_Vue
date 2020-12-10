@@ -6,6 +6,7 @@ const options = {
             bodyNote: "",
             notes: [],
             titleNote: "",
+            nbWord: "",
         }
     },
     methods : {
@@ -44,7 +45,14 @@ const options = {
               return id !== note.id;
             });
             localStorage.setItem("notes", JSON.stringify(this.notes));
-          },
+        },
+        countWord(){
+            
+            const trimmedText = this.bodyNote.trim();
+            
+            this.nbWord = trimmedText.length === 0 ? 0: trimmedText.split(" ").length;
+            console.log(this.nbWord)
+        },
     },
     mounted() {
         this.notes = JSON.parse(localStorage.getItem("notes")) || [];
