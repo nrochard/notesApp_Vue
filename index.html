@@ -72,10 +72,12 @@
                 </h5>
               </div>
           
-              <div id="collapseOne" class="collapse show" aria-labelledby="headingOne" data-parent="#accordion">
-                <div class="card-body text_note">
-                  {{ note.content.substring(0,29)+" ..." }}
+              <div aria-labelledby="headingOne" data-parent="#accordion">
+                <div v-if="" class="card-body text_note">
+                  {{ note.content.substring(0,29) }} <span v-if="note.content.length > 30">...</span>
                 </div>
+                <div class="card-body text_note" v-if="seenBigNote && note.id === idBigNote">{{ note.content }}</div>
+                <button @click.prevent="displayBigNote(note.id)" class="btn read mb-2" v-if="note.content.length > 30">Voir</button>
               </div>
             </div>
           </div>

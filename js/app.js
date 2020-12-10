@@ -8,7 +8,10 @@ const options = {
             titleNote: "",
             nbWord: "",
             seenEditNote: false,
-            idToEdit: ""
+            idToEdit: "",
+            contentMd: "",
+            seenBigNote: false,
+            idBigNote: ""
         }
     },
     methods : {
@@ -71,6 +74,14 @@ const options = {
             localStorage.setItem("notes", JSON.stringify(this.notes));
             this.seenEditNote = false;
         },
+        displayBigNote(id){
+            if (!this.seenBigNote){
+                this.seenBigNote = true;
+                this.idBigNote = id;
+            }  
+            else
+                this.seenBigNote = false;
+        }
     },
     mounted() {
         this.notes = JSON.parse(localStorage.getItem("notes")) || [];

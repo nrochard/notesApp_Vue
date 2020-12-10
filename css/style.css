@@ -18,7 +18,7 @@ nav{
     font-family: 'Mulish', sans-serif !important;
      font-weight: 800 !important; 
      font-size: 30px !important;
-     color: rgb(31, 98, 161) !important;
+     color: #1f62a1 !important;
      margin-top: 3px !important;
 }
 
@@ -114,7 +114,7 @@ footer{
     border-radius: 20px !important;
     box-shadow: 0 10px 20px rgba(0,0,0,0.02), 0 6px 6px rgba(0,0,0,0.05) !important;
     background: rgb(173,215,241);
-    background: linear-gradient(176deg, rgba(173,215,241,1) 0%, rgba(81,164,203,1) 46%, rgba(9,103,205,1) 100%);
+    background: linear-gradient(176deg, rgba(173,215,241,1) 0%, rgba(81,164,203,1) 46%, #0967cd 100%);
 }
 
 .div_add_note{
@@ -150,7 +150,7 @@ footer{
 }
 
 .text_note{
-    padding: 0 20px 20px 20px !important;
+    padding: 0 20px 10px 20px !important;
     font-family: 'Mulish', sans-serif !important;
 }
 
@@ -163,4 +163,13 @@ footer{
 .nb_word{
     margin-bottom: 0 !important;
     font-size: 14px !important;
+}
+
+.read{
+    margin: 0 auto !important;
+    display: block !important;
+    font-family: 'Mulish', sans-serif !important;
+    background: none !important;
+    border: none !important;
+    color: rgb(197, 197, 197) !important;
 }
