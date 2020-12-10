@@ -7,6 +7,8 @@ const options = {
             notes: [],
             titleNote: "",
             nbWord: "",
+            seenEditNote: false,
+            idToEdit: ""
         }
     },
     methods : {
@@ -20,6 +22,9 @@ const options = {
             })
         },
         displayFormNote(){
+            this.seenEditNote = false;
+            this.bodyNote = "";
+            this.titleNote = "";
             if (!this.seenAddNote)
                 this.seenAddNote = true;
             else
@@ -46,12 +51,27 @@ const options = {
             });
             localStorage.setItem("notes", JSON.stringify(this.notes));
         },
-        countWord(){
-            
+        countWord(){   
             const trimmedText = this.bodyNote.trim();
             
             this.nbWord = trimmedText.length === 0 ? 0: trimmedText.split(" ").length;
-            console.log(this.nbWord)
+        },
+        editNote(note){
+            this.seenAddNote = false;
+            this.seenEditNote = true;
+            this.titleNote = note.title;
+            this.bodyNote = note.content;
+            this.idToEdit = note.id;
+            console.log(note);
+        },
+        updateNote(){
+            console.log(this.idToEdit)
+            const noteToEdit = this.notes.find( note => note.id === this.idToEdit);
+            console.log(noteToEdit);
+            noteToEdit.title = this.titleNote;
+            noteToEdit.content = this.bodyNote;
+            localStorage.setItem("notes", JSON.stringify(this.notes));
+            console.log(noteToEdit);
         },
     },
     mounted() {

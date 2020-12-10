@@ -34,6 +34,7 @@
 
           <div v-if="seenAddNote" class="card mt-4 mb-4 div_add_note" style="width: 100%;">
             <div class="card-body">
+                <!-- Formulaire d'ajout -->
                 <form @submit.prevent="addNote">
                   <input type="text" class="form-control" v-model="titleNote" placeholder="Titre" v-focus />
                   <textarea  @input.prevent="countWord" v-model="bodyNote" class="form-control mt-4" aria-label="With textarea" placeholder="..."></textarea>
@@ -41,10 +42,23 @@
                     <button type="submit" class="btn btn_add_note mt-4" :disabled="!bodyNote.trim() || !titleNote.trim()">Ajouter</button>
                     <p class="mt-4 nb_word">Nombre de mots : {{ nbWord }}</p>
                   </div>
-
-                </form>
+                </form>              
             </div>
         </div>
+
+        <div v-if="seenEditNote" class="card mt-4 mb-4 div_add_note" style="width: 100%;">
+          <div class="card-body">
+              <!-- Formulaire d'édition -->
+              <form @submit.prevent="updateNote">
+                <input type="text" class="form-control" v-model="titleNote" placeholder="Titre" v-focus/>
+                <textarea  @input.prevent="countWord" v-model="bodyNote" class="form-control mt-4" aria-label="With textarea" placeholder="..."></textarea>
+                <div class="btn_nb">
+                  <button type="submit" class="btn btn_add_note mt-4" :disabled="!bodyNote.trim() || !titleNote.trim()">Modifier</button>
+                  <p class="mt-4 nb_word">Nombre de mots : {{ nbWord }}</p>
+                </div>
+              </form>              
+          </div>
+      </div>
 
           <div id="accordion">
             <div class="card div_note mt-4"  v-for="note in notes">
@@ -53,7 +67,7 @@
                   <button class="btn btn-link title_note">
                     {{ note.title }}
                   </button>
-                  <a href=""><img class="edit_note" src="img/pencil.png"></a>
+                  <a @click.prevent="editNote(note)" href=""><img class="edit_note" src="img/pencil.png"></a>
                   <a @click.prevent="deleteNote(note.id)" href=""><img class="delete_note" src="img/delete.png"></a>
                 </h5>
               </div>
