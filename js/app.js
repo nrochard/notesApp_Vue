@@ -9,13 +9,12 @@ const options = {
             nbWord: "",
             seenEditNote: false,
             idToEdit: "",
-            contentMd: "",
-            seenBigNote: false,
             idBigNote: ""
         }
     },
     methods : {
-        changed(){
+        // Chercher une note
+        searchNote(){
             if(!this.search){
                 this.notes = JSON.parse(localStorage.getItem("notes")) || [];
             }
@@ -23,7 +22,8 @@ const options = {
             this.notes = this.notes.filter((note) => {
                 return note.title.toLowerCase().includes(this.search.toLowerCase());
             })
-        },
+        },        
+        // Afficher le formulaire d'ajout
         displayFormNote(){
             this.seenEditNote = false;
             this.bodyNote = "";
@@ -33,6 +33,7 @@ const options = {
             else
                 this.seenAddNote = false;
         },
+        // Créer une note
         addNote(){
             if (!this.bodyNote || !this.titleNote) {
                 return;
@@ -45,20 +46,22 @@ const options = {
             this.notes.unshift(bodyNote);
             this.bodyNote = "";
             this.titleNote = "";
-            // this.seenAddNote = false;
             localStorage.setItem("notes", JSON.stringify(this.notes));
         },
+        // Supprimer une note
         deleteNote(id) {
             this.notes = this.notes.filter((note) => {
               return id !== note.id;
             });
             localStorage.setItem("notes", JSON.stringify(this.notes));
         },
+        // Compter le nombre de mots
         countWord(){   
             const trimmedText = this.bodyNote.trim();
             
             this.nbWord = trimmedText.length === 0 ? 0: trimmedText.split(" ").length;
         },
+        // Afficher le formulaire d'édition
         editNote(note){
             this.seenAddNote = false;
             this.seenEditNote = true;
@@ -67,6 +70,7 @@ const options = {
             this.idToEdit = note.id;
             console.log(note);
         },
+        // Mettre à jour la note
         updateNote(){
             const noteToEdit = this.notes.find( note => note.id === this.idToEdit);
             noteToEdit.title = this.titleNote;
@@ -74,8 +78,8 @@ const options = {
             localStorage.setItem("notes", JSON.stringify(this.notes));
             this.seenEditNote = false;
         },
+        // Afficher les notes longues en entier
         displayBigNote(id){
-            console.log(id);
             this.idBigNote = id;
         }
     },
