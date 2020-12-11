@@ -75,12 +75,8 @@ const options = {
             this.seenEditNote = false;
         },
         displayBigNote(id){
-            if (!this.seenBigNote){
-                this.seenBigNote = true;
-                this.idBigNote = id;
-            }  
-            else
-                this.seenBigNote = false;
+            console.log(id);
+            this.idBigNote = id;
         }
     },
     mounted() {

@@ -31,6 +31,7 @@ footer{
 
 .create_note{
     width: 30px;
+    cursor: pointer;
 }
 
 .delete_note, .edit_note{
@@ -59,7 +60,7 @@ footer{
 
 
 .form-control:focus{
-    border-color: grey !important;
+    border-color:  #0967cd  !important;
     box-shadow: none !important;
 }
 
@@ -131,13 +132,16 @@ footer{
 }
 
 .card-body form > input:first-child{
-    border: none !important;
     border-radius: 10px !important;
     font-family: 'Mulish', sans-serif !important;
 }
 
 .card-body form > input:first-child::placeholder{
     font-family: 'Mulish', sans-serif !important;
+}
+
+.card-body form > input:focus{
+    border: 1px solid #0967cd !important;
 }
 
 .btn_add_note{
@@ -172,4 +176,13 @@ footer{
     background: none !important;
     border: none !important;
     color: rgb(197, 197, 197) !important;
+}
+
+.content_note{
+    border-radius: 10px !important;
+ 
+}
+
+.content_note:focus{
+    border: 1px solid #0967cd !important;
 }
