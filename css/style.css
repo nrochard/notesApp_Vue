@@ -186,3 +186,8 @@ footer{
 .content_note:focus{
     border: 1px solid #0967cd !important;
 }
+
+.head_card{
+    display: flex;
+    justify-content: space-between;
+}
