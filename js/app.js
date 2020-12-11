@@ -6,7 +6,7 @@ const options = {
             bodyNote: "",
             notes: [],
             titleNote: "",
-            nbWord: "",
+            nbWord: 0,
             seenEditNote: false,
             idToEdit: "",
             idBigNote: ""
@@ -46,6 +46,7 @@ const options = {
             this.notes.unshift(bodyNote);
             this.bodyNote = "";
             this.titleNote = "";
+            this.nbWord = "",
             localStorage.setItem("notes", JSON.stringify(this.notes));
         },
         // Supprimer une note
