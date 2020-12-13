@@ -73,6 +73,9 @@ const options = {
         },
         // Mettre à jour la note
         updateNote(){
+            if (!this.bodyNote || !this.titleNote) {
+                return;
+            }
             const noteToEdit = this.notes.find( note => note.id === this.idToEdit);
             noteToEdit.title = this.titleNote;
             noteToEdit.content = this.bodyNote;
